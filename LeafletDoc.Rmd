@@ -1,0 +1,35 @@
+---
+#title: "Leaflet Map"
+#author: "Sarah Allyssa S. Solidum"
+#date: "January 14, 2019"
+#output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Top 5 Hotspots for Traveling Gamer in JAPAN
+
+## January 14, 2019
+```{r, echo = FALSE, warning=FALSE}
+library(leaflet)
+
+
+GamerIcon <- makeIcon(
+  iconUrl = "http://www.iconarchive.com/download/i99377/dtafalonso/android-lollipop/Play-Games.ico",
+  iconWidth = 31*215/230, iconHeight = 31, iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+GamerSites <- c("<a href = 'https://www.pokemon.co.jp/gp/pokecen/megatokyo/'>Pokemon Center Mega Tokyo</a>","<a href = 'https://www.adores.jp/vrpark/'>VR Park Tokyo Shibuya</a>","<a href = 'https://akiba.or.jp/'>Akihabara Electric Town</a>","<a href = 'http://www.nbw.jp/#!'>Nakano Broadway</a>","<a href = 'http://www.superpotato.com/'>Super Potato</a>")
+
+df <- data.frame(lat = c(35.729094,35.661543,35.699922,35.709378,35.699629),
+                 lng = c(139.719289,139.698264,139.771464,139.665594, 139.770699))
+
+
+
+
+df%>% leaflet() %>% addTiles() %>% addMarkers(clusterOptions = markerClusterOptions(), popup = GamerSites) 
+
+```
+
+
